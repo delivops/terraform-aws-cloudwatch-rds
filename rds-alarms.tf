@@ -19,6 +19,11 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 }
 resource "aws_cloudwatch_metric_alarm" "high_memory" {
   count               = var.high_memory_enabled ? 1 : 0
@@ -30,7 +35,7 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   namespace           = "AWS/RDS"
   period              = 60
   statistic           = "Average"
-  threshold           = var.high_memory_max_allocations * 1073741824 * (100 - var.high_memory_threshold) / 100
+  threshold           = var.high_memory_capacity_gib * 1073741824 * (100 - var.high_memory_threshold) / 100
   alarm_description   = "Average database Memory utilization IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
@@ -38,6 +43,11 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_connections" {
@@ -51,10 +61,15 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
   statistic           = "Average"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
-  threshold           = var.high_connections_max_connections * var.high_connections_threshold / 100
+  threshold           = var.high_connections_max * var.high_connections_threshold / 100
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 
   alarm_description = "Alarm database connections IN ${var.db_instance_id} is too high"
 }
@@ -62,7 +77,7 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
 resource "aws_cloudwatch_metric_alarm" "high_storage" {
   count               = var.high_storage_enabled ? 1 : 0
   alarm_name          = "${var.db_instance_id}_high_storage"
-  comparison_operator = "GreaterThanThreshold"
+  comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "FreeLocalStorage"
   namespace           = "AWS/RDS"
@@ -76,6 +91,11 @@ resource "aws_cloudwatch_metric_alarm" "high_storage" {
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_write_latency" {
@@ -87,12 +107,17 @@ resource "aws_cloudwatch_metric_alarm" "high_write_latency" {
   namespace           = "AWS/RDS"
   period              = "60"
   statistic           = "Maximum"
-  threshold           = var.high_write_latency_threshold
+  threshold           = var.high_write_latency_seconds
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 
   alarm_description = "Write IOPS latency IN ${var.db_instance_id} is too high"
 
@@ -107,11 +132,17 @@ resource "aws_cloudwatch_metric_alarm" "high_read_latency" {
   namespace           = "AWS/RDS"
   period              = "60"
   statistic           = "Maximum"
-  threshold           = var.high_read_latency_threshold
+  threshold           = var.high_read_latency_seconds
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
+
 
   alarm_description = "Read IOPS latency IN ${var.db_instance_id} is too high"
   alarm_actions     = [var.aws_sns_topic_arn]
@@ -134,6 +165,11 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
@@ -145,11 +181,16 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   namespace           = "AWS/RDS"
   period              = "600"
   statistic           = "Average"
-  threshold           = var.swap_usage_threshold
+  threshold           = var.swap_usage_threshold_bytes
   alarm_description   = "Average database swap usage IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
 }

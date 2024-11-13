@@ -16,8 +16,8 @@ variable "high_memory_threshold" {
   default     = 90
 
 }
-variable "high_memory_max_allocations" { //in gib
-  description = "The alocated memory for the instance class"
+variable "high_memory_capacity_gib" {
+  description = "The capacity memory for the instance class"
   type        = number
 }
 variable "high_memory_enabled" {
@@ -32,7 +32,7 @@ variable "high_connections_threshold" {
   default     = 90
 
 }
-variable "high_connections_max_connections" {
+variable "high_connections_max" {
   description = "The maximum number of connections for the instance class"
   type        = number
 }
@@ -54,7 +54,7 @@ variable "high_storage_enabled" {
   default     = true
 
 }
-variable "high_write_latency_threshold" {
+variable "high_write_latency_seconds" {
   description = "The threshold for high write latency"
   type        = number
   default     = 2
@@ -66,7 +66,7 @@ variable "high_write_latency_enabled" {
   default     = true
 
 }
-variable "high_read_latency_threshold" {
+variable "high_read_latency_seconds" {
   description = "The threshold for high read latency"
   type        = number
   default     = 0.02
@@ -90,7 +90,7 @@ variable "disk_queue_depth_enabled" {
   default     = true
 
 }
-variable "swap_usage_threshold" {
+variable "swap_usage_threshold_bytes" {
   description = "The threshold for swap usage"
   type        = number
   default     = 256000000
@@ -110,4 +110,9 @@ variable "aws_sns_topic_arn" {
   description = "The ARN of the SNS topic to send CloudWatch alarms to."
   type        = string
 
+}
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
+  default = {}
 }
