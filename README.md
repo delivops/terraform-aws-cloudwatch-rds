@@ -102,21 +102,22 @@ No modules.
 | <a name="input_disk_queue_depth_enabled"></a> [disk\_queue\_depth\_enabled](#input\_disk\_queue\_depth\_enabled) | Enable disk queue depth alarm | `bool` | `true` | no |
 | <a name="input_disk_queue_depth_threshold"></a> [disk\_queue\_depth\_threshold](#input\_disk\_queue\_depth\_threshold) | The threshold for disk queue depth | `number` | `64` | no |
 | <a name="input_high_connections_enabled"></a> [high\_connections\_enabled](#input\_high\_connections\_enabled) | Enable high connections alarm | `bool` | `true` | no |
-| <a name="input_high_connections_max_connections"></a> [high\_connections\_max\_connections](#input\_high\_connections\_max\_connections) | The maximum number of connections for the instance class | `number` | n/a | yes |
+| <a name="input_high_connections_max"></a> [high\_connections\_max](#input\_high\_connections\_max) | The maximum number of connections for the instance class | `number` | n/a | yes |
 | <a name="input_high_connections_threshold"></a> [high\_connections\_threshold](#input\_high\_connections\_threshold) | The threshold for high connections | `number` | `90` | no |
 | <a name="input_high_cpu_enabled"></a> [high\_cpu\_enabled](#input\_high\_cpu\_enabled) | Enable high CPU alarm | `bool` | `true` | no |
 | <a name="input_high_cpu_threshold"></a> [high\_cpu\_threshold](#input\_high\_cpu\_threshold) | The threshold for high CPU usage | `number` | `90` | no |
+| <a name="input_high_memory_capacity_gib"></a> [high\_memory\_capacity\_gib](#input\_high\_memory\_capacity\_gib) | The capacity memory for the instance class | `number` | n/a | yes |
 | <a name="input_high_memory_enabled"></a> [high\_memory\_enabled](#input\_high\_memory\_enabled) | Enable high memory alarm | `bool` | `true` | no |
-| <a name="input_high_memory_max_allocations"></a> [high\_memory\_max\_allocations](#input\_high\_memory\_max\_allocations) | The alocated memory for the instance class | `number` | n/a | yes |
 | <a name="input_high_memory_threshold"></a> [high\_memory\_threshold](#input\_high\_memory\_threshold) | The threshold for high memory usage | `number` | `90` | no |
 | <a name="input_high_read_latency_enabled"></a> [high\_read\_latency\_enabled](#input\_high\_read\_latency\_enabled) | Enable high read latency alarm | `bool` | `true` | no |
-| <a name="input_high_read_latency_threshold"></a> [high\_read\_latency\_threshold](#input\_high\_read\_latency\_threshold) | The threshold for high read latency | `number` | `0.02` | no |
+| <a name="input_high_read_latency_seconds"></a> [high\_read\_latency\_seconds](#input\_high\_read\_latency\_seconds) | The threshold for high read latency | `number` | `0.02` | no |
 | <a name="input_high_storage_enabled"></a> [high\_storage\_enabled](#input\_high\_storage\_enabled) | Enable high storage alarm | `bool` | `true` | no |
 | <a name="input_high_storage_threshold"></a> [high\_storage\_threshold](#input\_high\_storage\_threshold) | The threshold for high storage usage | `number` | `90` | no |
 | <a name="input_high_write_latency_enabled"></a> [high\_write\_latency\_enabled](#input\_high\_write\_latency\_enabled) | Enable high write latency alarm | `bool` | `true` | no |
-| <a name="input_high_write_latency_threshold"></a> [high\_write\_latency\_threshold](#input\_high\_write\_latency\_threshold) | The threshold for high write latency | `number` | `2` | no |
+| <a name="input_high_write_latency_seconds"></a> [high\_write\_latency\_seconds](#input\_high\_write\_latency\_seconds) | The threshold for high write latency | `number` | `2` | no |
 | <a name="input_swap_usage_enabled"></a> [swap\_usage\_enabled](#input\_swap\_usage\_enabled) | Enable swap usage alarm | `bool` | `true` | no |
-| <a name="input_swap_usage_threshold"></a> [swap\_usage\_threshold](#input\_swap\_usage\_threshold) | The threshold for swap usage | `number` | `256000000` | no |
+| <a name="input_swap_usage_threshold_bytes"></a> [swap\_usage\_threshold\_bytes](#input\_swap\_usage\_threshold\_bytes) | The threshold for swap usage | `number` | `256000000` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
 
