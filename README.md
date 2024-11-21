@@ -53,34 +53,40 @@ module "rds_alarms" {
 ## information
 
 1. high cpu- with threshold:
-   You enter the threshold for CPU, for example 80%. In case of alerts, the solution will be increasing the cpu of your instance.
+   You enter the threshold for CPU, for example 80%. In case of alerts, the solution will be increasing the cpu 
+   of your instance.
 
 2. high memory- with threshold:
-   You enter the threshold for Memory, for example 80%. You are also enter the memory allocate for your instance-id, which you can find here: [Link text Here](https://sysadminxpert.com/aws-rds-max-connections-limit/#google_vignette)
+   You enter the threshold for Memory, for example 80%. You are also enter the memory allocate for your 
+   instance-id, which you can find here: [Link text Here](https://sysadminxpert.com/aws-rds-max-connections- 
+   limit/#google_vignette)
    In case of alerts, the solution will be increasing the memory of your instance.
 
 3. high connections- with threshold:
-   You enter the threshold for Connections, for example 80%. You are also enter the connections allocate for your instance-id, which you can find here: [Link text Here](https://sysadminxpert.com/aws-rds-max-connections-limit/#google_vignette)
+   You enter the threshold for Connections, for example 80%. You are also enter the connections allocate for 
+   your instance-id, which you can find here: [Link text Here](https://sysadminxpert.com/aws-rds-max- 
+   connections-limit/#google_vignette)
    In case of alerts, the solution will be increasing the connections of your instance.
 
 4. high storage- with threshold:
    You enter the threshold for storage, for example 80%.
    In case of alerts, the solution will be increasing the storage of your instance.
 
-5. high write latency- with seconds
+5. high write latency- in seconds
    You enter the number of seconds that you can bear as latency, the recommendation is 2sc.
    In case of alerts, you should decrease the traffic to your instance.
 
-6. high read latency- with seconds
+6. high read latency- in seconds
    You enter the number of seconds that you can bear as latency, the recommendation is 0.02sc.
    In case of alerts, you should decrease the traffic to your instance or add a read replica.
 
 7. disk queue depth too high- with number
    You enter the number of depths that you can bear in your instance, the recommendation is 64.
-   In case of alerting, the solution is increasing the read/write capacity of your instance.
+   In case of alerting, the solution is change the disk type to something stronger.
+
 8. swap usage too high- with number
-   You enter the number of memory allocate for swap that you can bear in your instance, the recommendation is 256000000 (256MB).
-   In case of alerting, the solution is increasing the memory of your instance.
+   You enter the number of memory allocate for swap that you can bear in your instance, the recommendation is 
+   256000000 (256MB).
 
 ## License
 
