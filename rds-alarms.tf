@@ -4,7 +4,8 @@ data "aws_db_instance" "database" {
 
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   count               = var.high_cpu_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}-high-cpu"
+  alarm_name          = "RDS | ${var.db_instance_id} | High CPU"
+  alarm_description   = "High CPU utilization in ${var.db_instance_id}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 5
   metric_name         = "CPUUtilization"
@@ -12,7 +13,6 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   period              = 60
   statistic           = "Average"
   threshold           = var.high_cpu_threshold
-  alarm_description   = "Average database CPU utilization IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   datapoints_to_alarm = 5
@@ -27,7 +27,8 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
 }
 resource "aws_cloudwatch_metric_alarm" "high_memory" {
   count               = var.high_memory_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}-high-memory"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Memory"
+  alarm_description   = "High Memory utilization in ${var.db_instance_id}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = 5
   datapoints_to_alarm = 5
@@ -36,7 +37,6 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   period              = 60
   statistic           = "Average"
   threshold           = var.high_memory_capacity_gib * 1073741824 * (100 - var.high_memory_threshold) / 100
-  alarm_description   = "Average database Memory utilization IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
 
@@ -52,7 +52,8 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
 
 resource "aws_cloudwatch_metric_alarm" "high_connections" {
   count               = var.high_connections_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_high_connections"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Connections"
+  alarm_description   = "High connections in ${var.db_instance_id}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 5
   metric_name         = "DatabaseConnections"
@@ -71,12 +72,12 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
   })
 
 
-  alarm_description = "Alarm database connections IN ${var.db_instance_id} is too high"
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_storage" {
   count               = var.high_storage_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_high_storage"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Storage"
+  alarm_description   = "High Storage in ${var.db_instance_id}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "FreeLocalStorage"
@@ -84,7 +85,6 @@ resource "aws_cloudwatch_metric_alarm" "high_storage" {
   period              = "600"
   statistic           = "Average"
   threshold           = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_storage_threshold) / 100
-  alarm_description   = "Average database storage IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
 
@@ -100,7 +100,8 @@ resource "aws_cloudwatch_metric_alarm" "high_storage" {
 
 resource "aws_cloudwatch_metric_alarm" "high_write_latency" {
   count               = var.high_write_latency_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_high_write_latency"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Write Latency"
+  alarm_description = "High Write IOPS latency in ${var.db_instance_id}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "WriteLatency"
@@ -119,13 +120,13 @@ resource "aws_cloudwatch_metric_alarm" "high_write_latency" {
   })
 
 
-  alarm_description = "Write IOPS latency IN ${var.db_instance_id} is too high"
 
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_read_latency" {
   count               = var.high_read_latency_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_high_read_latency"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Read Latency"
+  alarm_description = "High Read IOPS latency in ${var.db_instance_id}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "ReadLatency"
@@ -142,16 +143,14 @@ resource "aws_cloudwatch_metric_alarm" "high_read_latency" {
     "Terraform"  = "true"
   })
 
-
-
-  alarm_description = "Read IOPS latency IN ${var.db_instance_id} is too high"
   alarm_actions     = [var.aws_sns_topic_arn]
   ok_actions        = [var.aws_sns_topic_arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   count               = var.disk_queue_depth_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_disk_queue_depth"
+  alarm_name          = "RDS | ${var.db_instance_id} | Disk Queue Depth"
+  alarm_description   = "High Disk Queue Depth in ${var.db_instance_id}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "DiskQueueDepth"
@@ -159,7 +158,6 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   period              = "600"
   statistic           = "Average"
   threshold           = var.disk_queue_depth_threshold
-  alarm_description   = "Average database disk queue depth IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   dimensions = {
@@ -174,7 +172,8 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
 
 resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   count               = var.swap_usage_enabled ? 1 : 0
-  alarm_name          = "${var.db_instance_id}_swap_usage"
+  alarm_name          = "RDS | ${var.db_instance_id} | Swap Use"
+  alarm_description   = "High Swap usage in ${var.db_instance_id}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "SwapUsage"
@@ -182,7 +181,6 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   period              = "600"
   statistic           = "Average"
   threshold           = var.swap_usage_threshold_bytes
-  alarm_description   = "Average database swap usage IN ${var.db_instance_id} is too high"
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   dimensions = {
