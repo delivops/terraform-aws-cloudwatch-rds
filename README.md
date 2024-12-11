@@ -141,7 +141,7 @@ No modules.
 | <a name="input_high_connections_threshold"></a> [high\_connections\_threshold](#input\_high\_connections\_threshold) | The threshold for high connections | `number` | `90` | no |
 | <a name="input_high_cpu_enabled"></a> [high\_cpu\_enabled](#input\_high\_cpu\_enabled) | Enable high CPU alarm | `bool` | `true` | no |
 | <a name="input_high_cpu_threshold"></a> [high\_cpu\_threshold](#input\_high\_cpu\_threshold) | The threshold for high CPU usage | `number` | `90` | no |
-| <a name="input_high_local_storage_enabled"></a> [high\_local\_storage\_enabled](#input\_high\_local\_storage\_enabled) | Enable high storage alarm - for aurora | `bool` | `true` | no |
+| <a name="input_high_local_storage_enabled"></a> [high\_local\_storage\_enabled](#input\_high\_local\_storage\_enabled) | Enable high storage alarm - for aurora | `bool` | `false` | no |
 | <a name="input_high_local_storage_threshold"></a> [high\_local\_storage\_threshold](#input\_high\_local\_storage\_threshold) | The threshold for high storage usage - for aurora | `number` | `90` | no |
 | <a name="input_high_memory_capacity_gib"></a> [high\_memory\_capacity\_gib](#input\_high\_memory\_capacity\_gib) | The capacity memory for the instance class | `number` | n/a | yes |
 | <a name="input_high_memory_enabled"></a> [high\_memory\_enabled](#input\_high\_memory\_enabled) | Enable high memory alarm | `bool` | `true` | no |
