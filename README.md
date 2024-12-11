@@ -120,9 +120,10 @@ No modules.
 | [aws_cloudwatch_metric_alarm.disk_queue_depth_too_high](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_connections](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_cpu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
+| [aws_cloudwatch_metric_alarm.high_local_storage](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_memory](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_read_latency](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
-| [aws_cloudwatch_metric_alarm.high_storage](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
+| [aws_cloudwatch_metric_alarm.high_storage_space](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.high_write_latency](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_cloudwatch_metric_alarm.swap_usage_too_high](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_metric_alarm) | resource |
 | [aws_db_instance.database](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/db_instance) | data source |
@@ -140,17 +141,19 @@ No modules.
 | <a name="input_high_connections_threshold"></a> [high\_connections\_threshold](#input\_high\_connections\_threshold) | The threshold for high connections | `number` | `90` | no |
 | <a name="input_high_cpu_enabled"></a> [high\_cpu\_enabled](#input\_high\_cpu\_enabled) | Enable high CPU alarm | `bool` | `true` | no |
 | <a name="input_high_cpu_threshold"></a> [high\_cpu\_threshold](#input\_high\_cpu\_threshold) | The threshold for high CPU usage | `number` | `90` | no |
+| <a name="input_high_local_storage_enabled"></a> [high\_local\_storage\_enabled](#input\_high\_local\_storage\_enabled) | Enable high storage alarm - for aurora | `bool` | `true` | no |
+| <a name="input_high_local_storage_threshold"></a> [high\_local\_storage\_threshold](#input\_high\_local\_storage\_threshold) | The threshold for high storage usage - for aurora | `number` | `90` | no |
 | <a name="input_high_memory_capacity_gib"></a> [high\_memory\_capacity\_gib](#input\_high\_memory\_capacity\_gib) | The capacity memory for the instance class | `number` | n/a | yes |
 | <a name="input_high_memory_enabled"></a> [high\_memory\_enabled](#input\_high\_memory\_enabled) | Enable high memory alarm | `bool` | `true` | no |
 | <a name="input_high_memory_threshold"></a> [high\_memory\_threshold](#input\_high\_memory\_threshold) | The threshold for high memory usage | `number` | `90` | no |
 | <a name="input_high_read_latency_enabled"></a> [high\_read\_latency\_enabled](#input\_high\_read\_latency\_enabled) | Enable high read latency alarm | `bool` | `true` | no |
 | <a name="input_high_read_latency_seconds"></a> [high\_read\_latency\_seconds](#input\_high\_read\_latency\_seconds) | The threshold for high read latency | `number` | `0.02` | no |
-| <a name="input_high_storage_enabled"></a> [high\_storage\_enabled](#input\_high\_storage\_enabled) | Enable high storage alarm | `bool` | `true` | no |
-| <a name="input_high_storage_threshold"></a> [high\_storage\_threshold](#input\_high\_storage\_threshold) | The threshold for high storage usage | `number` | `90` | no |
+| <a name="input_high_storage_space_enabled"></a> [high\_storage\_space\_enabled](#input\_high\_storage\_space\_enabled) | Enable high storage alarm | `bool` | `true` | no |
+| <a name="input_high_storage_space_threshold"></a> [high\_storage\_space\_threshold](#input\_high\_storage\_space\_threshold) | The threshold for high storage usage | `number` | `90` | no |
 | <a name="input_high_write_latency_enabled"></a> [high\_write\_latency\_enabled](#input\_high\_write\_latency\_enabled) | Enable high write latency alarm | `bool` | `true` | no |
 | <a name="input_high_write_latency_seconds"></a> [high\_write\_latency\_seconds](#input\_high\_write\_latency\_seconds) | The threshold for high write latency | `number` | `2` | no |
 | <a name="input_swap_usage_enabled"></a> [swap\_usage\_enabled](#input\_swap\_usage\_enabled) | Enable swap usage alarm | `bool` | `true` | no |
-| <a name="input_swap_usage_threshold_bytes"></a> [swap\_usage\_threshold\_bytes](#input\_swap\_usage\_threshold\_bytes) | The threshold for swap usage | `number` | `256000000` | no |
+| <a name="input_swap_usage_threshold"></a> [swap\_usage\_threshold](#input\_swap\_usage\_threshold) | The threshold for swap usage as percentage from RAM size | `number` | `10` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
