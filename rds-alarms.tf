@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_local_storage" {
-  count               = var.high_storage_enabled ? 1 : 0
+  count               = var.high_local_storage_enabled ? 1 : 0
   alarm_name          = "RDS | ${var.db_instance_id} | High Local Storage"
   alarm_description   = "High Local Storage in ${var.db_instance_id}"
   comparison_operator = "LessThanThreshold"
@@ -99,7 +99,7 @@ resource "aws_cloudwatch_metric_alarm" "high_local_storage" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_storage_space" {
-  count               = var.high_storage_enabled ? 1 : 0
+  count               = var.high_storage_space_enabled ? 1 : 0
   alarm_name          = "RDS | ${var.db_instance_id} | High Storage Space"
   alarm_description   = "High Storage Space in ${var.db_instance_id}"
   comparison_operator = "LessThanThreshold"
