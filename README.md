@@ -68,9 +68,10 @@ module "rds_alarms" {
    connections-limit/#google_vignette)
    In case of alerts, the solution will be increasing the connections of your instance.
 
-4. high storage- with threshold:
+4. high local storage- with threshold:
    You enter the threshold for storage, for example 80%.
    In case of alerts, the solution will be increasing the storage of your instance.
+   Only for aurora, the others don't have those metrics.
 
 5. high write latency- in seconds
    You enter the number of seconds that you can bear as latency, the recommendation is 2sc.
@@ -84,9 +85,12 @@ module "rds_alarms" {
    You enter the number of depths that you can bear in your instance, the recommendation is 64.
    In case of alerting, the solution is change the disk type to something stronger.
 
-8. swap usage too high- with number
-   You enter the number of memory allocate for swap that you can bear in your instance, the recommendation is 
-   256000000 (256MB).
+8. swap usage too high- with threshold
+   You enter the percentage of swap from RAM size, the recommendation is 10%-20% of swapping
+
+9. high storage space- with threshold:
+   You enter the threshold for storage, for example 80%.
+   In case of alerts, the solution will be increasing the storage of your instance.  
 
 ## License
 

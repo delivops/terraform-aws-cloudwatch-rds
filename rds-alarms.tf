@@ -74,17 +74,41 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
 
 }
 
-resource "aws_cloudwatch_metric_alarm" "high_storage" {
+resource "aws_cloudwatch_metric_alarm" "high_local_storage" {
   count               = var.high_storage_enabled ? 1 : 0
-  alarm_name          = "RDS | ${var.db_instance_id} | High Storage"
-  alarm_description   = "High Storage in ${var.db_instance_id}"
+  alarm_name          = "RDS | ${var.db_instance_id} | High Local Storage"
+  alarm_description   = "High Local Storage in ${var.db_instance_id}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "FreeLocalStorage"
   namespace           = "AWS/RDS"
   period              = "600"
   statistic           = "Average"
-  threshold           = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_storage_threshold) / 100
+  threshold           = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_local_storage_threshold) / 100
+  alarm_actions       = [var.aws_sns_topic_arn]
+  ok_actions          = [var.aws_sns_topic_arn]
+
+  dimensions = {
+    DBInstanceIdentifier = var.db_instance_id
+  }
+  tags = merge(var.tags, {
+    "InstanceId" = var.db_instance_id,
+    "Terraform"  = "true"
+  })
+
+}
+
+resource "aws_cloudwatch_metric_alarm" "high_storage_space" {
+  count               = var.high_storage_enabled ? 1 : 0
+  alarm_name          = "RDS | ${var.db_instance_id} | High Storage Space"
+  alarm_description   = "High Storage Space in ${var.db_instance_id}"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "FreeStorageSpace"
+  namespace           = "AWS/RDS"
+  period              = "600"
+  statistic           = "Average"
+  threshold           = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_storage_space_threshold) / 100
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
 
@@ -180,7 +204,7 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   namespace           = "AWS/RDS"
   period              = "600"
   statistic           = "Average"
-  threshold           = var.swap_usage_threshold_bytes
+  threshold           = (var.swap_usage_threshold / 100) * var.high_memory_capacity_gib * 1073741824
   alarm_actions       = [var.aws_sns_topic_arn]
   ok_actions          = [var.aws_sns_topic_arn]
   dimensions = {

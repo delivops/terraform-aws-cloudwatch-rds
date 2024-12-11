@@ -42,18 +42,32 @@ variable "high_connections_enabled" {
   default     = true
 
 }
-variable "high_storage_threshold" {
+variable "high_local_storage_threshold" {
+  description = "The threshold for high storage usage - for aurora"
+  type        = number
+  default     = 90
+
+}
+variable "high_local_storage_enabled" {
+  description = "Enable high storage alarm - for aurora"
+  type        = bool
+  default     = true
+
+}
+
+variable "high_storage_space_threshold" {
   description = "The threshold for high storage usage"
   type        = number
   default     = 90
 
 }
-variable "high_storage_enabled" {
+variable "high_storage_space_enabled" {
   description = "Enable high storage alarm"
   type        = bool
   default     = true
 
 }
+
 variable "high_write_latency_seconds" {
   description = "The threshold for high write latency"
   type        = number
@@ -90,10 +104,10 @@ variable "disk_queue_depth_enabled" {
   default     = true
 
 }
-variable "swap_usage_threshold_bytes" {
-  description = "The threshold for swap usage"
+variable "swap_usage_threshold" {
+  description = "The threshold for swap usage as percentage from RAM size"
   type        = number
-  default     = 256000000
+  default     = 10
 
 }
 variable "swap_usage_enabled" {
