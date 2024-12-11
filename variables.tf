@@ -51,7 +51,7 @@ variable "high_local_storage_threshold" {
 variable "high_local_storage_enabled" {
   description = "Enable high storage alarm - for aurora"
   type        = bool
-  default     = true
+  default     = false
 
 }
 
