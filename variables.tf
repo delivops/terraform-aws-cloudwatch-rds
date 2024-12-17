@@ -120,9 +120,10 @@ variable "db_instance_id" {
   description = "The instance ID of the RDS database instance that you want to monitor."
   type        = string
 }
-variable "aws_sns_topic_arn" {
-  description = "The ARN of the SNS topic to send CloudWatch alarms to."
-  type        = string
+variable "aws_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
 
 }
 variable "tags" {
