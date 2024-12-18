@@ -10,6 +10,12 @@ variable "high_cpu_enabled" {
   default     = true
 
 }
+variable "high_cpu_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
+}
 variable "high_memory_threshold" {
   description = "The threshold for high memory usage"
   type        = number
@@ -19,6 +25,12 @@ variable "high_memory_threshold" {
 variable "high_memory_capacity_gib" {
   description = "The capacity memory for the instance class"
   type        = number
+}
+variable "high_memory_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
 }
 variable "high_memory_enabled" {
   description = "Enable high memory alarm"
@@ -42,6 +54,12 @@ variable "high_connections_enabled" {
   default     = true
 
 }
+variable "high_connections_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
+}
 variable "high_local_storage_threshold" {
   description = "The threshold for high storage usage - for aurora"
   type        = number
@@ -52,6 +70,12 @@ variable "high_local_storage_enabled" {
   description = "Enable high storage alarm - for aurora"
   type        = bool
   default     = false
+
+}
+variable "high_local_storage_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
 
 }
 
@@ -67,6 +91,12 @@ variable "high_storage_space_enabled" {
   default     = true
 
 }
+variable "high_storage_space_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
+}
 
 variable "high_write_latency_seconds" {
   description = "The threshold for high write latency"
@@ -78,6 +108,12 @@ variable "high_write_latency_enabled" {
   description = "Enable high write latency alarm"
   type        = bool
   default     = true
+
+}
+variable "high_write_latency_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
 
 }
 variable "high_read_latency_seconds" {
@@ -92,6 +128,12 @@ variable "high_read_latency_enabled" {
   default     = true
 
 }
+variable "high_read_latency_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
+}
 variable "disk_queue_depth_threshold" {
   description = "The threshold for disk queue depth"
   type        = number
@@ -102,6 +144,12 @@ variable "disk_queue_depth_enabled" {
   description = "Enable disk queue depth alarm"
   type        = bool
   default     = true
+
+}
+variable "disk_queue_depth_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
 
 }
 variable "swap_usage_threshold" {
@@ -116,11 +164,17 @@ variable "swap_usage_enabled" {
   default     = true
 
 }
+variable "swap_usage_sns_topics_arns" {
+  description = "List of ARNs for the SNS topics"
+  type        = list(string)
+  default     = []
+
+}
 variable "db_instance_id" {
   description = "The instance ID of the RDS database instance that you want to monitor."
   type        = string
 }
-variable "aws_sns_topics_arns" {
+variable "global_sns_topics_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -129,5 +183,5 @@ variable "aws_sns_topics_arns" {
 variable "tags" {
   description = "A map of tags to add to all resources."
   type        = map(string)
-  default = {}
+  default     = {}
 }
