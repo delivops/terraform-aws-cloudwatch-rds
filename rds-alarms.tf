@@ -4,7 +4,7 @@ data "aws_db_instance" "database" {
 
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   count                     = var.high_cpu_enabled ? 1 : 0
-  alarm_name                = "RDS| High CPU Utilization (>${var.high_cpu_threshold}%) | ${var.db_instance_id} "
+  alarm_name                = "RDS| High CPU Utilization (>${var.high_cpu_threshold}%) | ${var.db_instance_id}"
   alarm_description         = "High CPU utilization in ${var.db_instance_id}"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = 5
