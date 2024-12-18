@@ -10,7 +10,7 @@ variable "high_cpu_enabled" {
   default     = true
 
 }
-variable "high_cpu_sns_topics_arns" {
+variable "high_cpu_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -26,7 +26,7 @@ variable "high_memory_capacity_gib" {
   description = "The capacity memory for the instance class"
   type        = number
 }
-variable "high_memory_sns_topics_arns" {
+variable "high_memory_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -54,7 +54,7 @@ variable "high_connections_enabled" {
   default     = true
 
 }
-variable "high_connections_sns_topics_arns" {
+variable "high_connections_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -72,7 +72,7 @@ variable "high_local_storage_enabled" {
   default     = false
 
 }
-variable "high_local_storage_sns_topics_arns" {
+variable "high_local_storage_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -91,7 +91,7 @@ variable "high_storage_space_enabled" {
   default     = true
 
 }
-variable "high_storage_space_sns_topics_arns" {
+variable "high_storage_space_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -110,7 +110,7 @@ variable "high_write_latency_enabled" {
   default     = true
 
 }
-variable "high_write_latency_sns_topics_arns" {
+variable "high_write_latency_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -128,7 +128,7 @@ variable "high_read_latency_enabled" {
   default     = true
 
 }
-variable "high_read_latency_sns_topics_arns" {
+variable "high_read_latency_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -146,7 +146,7 @@ variable "disk_queue_depth_enabled" {
   default     = true
 
 }
-variable "disk_queue_depth_sns_topics_arns" {
+variable "disk_queue_depth_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -164,7 +164,7 @@ variable "swap_usage_enabled" {
   default     = true
 
 }
-variable "swap_usage_sns_topics_arns" {
+variable "swap_usage_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []
@@ -174,7 +174,7 @@ variable "db_instance_id" {
   description = "The instance ID of the RDS database instance that you want to monitor."
   type        = string
 }
-variable "global_sns_topics_arns" {
+variable "all_alarms_sns_arns" {
   description = "List of ARNs for the SNS topics"
   type        = list(string)
   default     = []

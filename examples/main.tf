@@ -21,7 +21,7 @@ module "rds_alarms" {
   #version            = "0.0.5"
 
   db_instance_id           = "rds-aurora-1"
-  global_sns_topics_arns   = [aws_sns_topic.sns_topic.arn]
+  all_alarms_sns_arns      = [aws_sns_topic.sns_topic.arn]
   high_connections_max     = 1365
   high_memory_capacity_gib = 16
   depends_on               = [aws_sns_topic.sns_topic]

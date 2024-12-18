@@ -15,9 +15,9 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   statistic                 = "Average"
   threshold                 = var.high_cpu_threshold
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_cpu_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_cpu_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_cpu_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_cpu_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_cpu_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_cpu_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -42,9 +42,9 @@ resource "aws_cloudwatch_metric_alarm" "high_memory" {
   statistic                 = "Average"
   threshold                 = var.high_memory_capacity_gib * 1073741824 * (100 - var.high_memory_threshold) / 100
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_memory_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_memory_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_memory_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_memory_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_memory_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_memory_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -69,9 +69,9 @@ resource "aws_cloudwatch_metric_alarm" "high_connections" {
   statistic                 = "Average"
   threshold                 = var.high_connections_max * var.high_connections_threshold / 100
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_connections_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_connections_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_connections_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_connections_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_connections_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_connections_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -96,9 +96,9 @@ resource "aws_cloudwatch_metric_alarm" "high_local_storage" {
   statistic                 = "Average"
   threshold                 = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_local_storage_threshold) / 100
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_local_storage_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_local_storage_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_local_storage_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_local_storage_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_local_storage_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_local_storage_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -123,9 +123,9 @@ resource "aws_cloudwatch_metric_alarm" "high_storage_space" {
   statistic                 = "Average"
   threshold                 = data.aws_db_instance.database.allocated_storage * 1000000000 * (100 - var.high_storage_space_threshold) / 100
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_storage_space_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_storage_space_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_storage_space_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_storage_space_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_storage_space_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_storage_space_sns_arns)
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
   }
@@ -149,9 +149,9 @@ resource "aws_cloudwatch_metric_alarm" "high_write_latency" {
   statistic                 = "Maximum"
   threshold                 = var.high_write_latency_seconds
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_write_latency_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_write_latency_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_write_latency_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_write_latency_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_write_latency_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_write_latency_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -176,9 +176,9 @@ resource "aws_cloudwatch_metric_alarm" "high_read_latency" {
   statistic                 = "Maximum"
   threshold                 = var.high_read_latency_seconds
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.high_read_latency_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.high_read_latency_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.high_read_latency_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.high_read_latency_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.high_read_latency_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.high_read_latency_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -203,9 +203,9 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   statistic                 = "Average"
   threshold                 = var.disk_queue_depth_threshold
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.disk_queue_depth_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.disk_queue_depth_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.disk_queue_depth_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.disk_queue_depth_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.disk_queue_depth_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.disk_queue_depth_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
@@ -230,9 +230,9 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   statistic                 = "Average"
   threshold                 = (var.swap_usage_threshold / 100) * var.high_memory_capacity_gib * 1073741824
   treat_missing_data        = "breaching"
-  alarm_actions             = concat(var.global_sns_topics_arns, var.swap_usage_sns_topics_arns)
-  ok_actions                = concat(var.global_sns_topics_arns, var.swap_usage_sns_topics_arns)
-  insufficient_data_actions = concat(var.global_sns_topics_arns, var.swap_usage_sns_topics_arns)
+  alarm_actions             = concat(var.all_alarms_sns_arns, var.swap_usage_sns_arns)
+  ok_actions                = concat(var.all_alarms_sns_arns, var.swap_usage_sns_arns)
+  insufficient_data_actions = concat(var.all_alarms_sns_arns, var.swap_usage_sns_arns)
 
   dimensions = {
     DBInstanceIdentifier = var.db_instance_id
