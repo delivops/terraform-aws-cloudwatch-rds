@@ -185,3 +185,16 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "evaluation_periods" {
+  description = "The number of periods over which data is compared to the specified threshold."
+  type        = number
+  default     = 5
+  
+}
+variable "datapoints_to_alarm" {
+  description = "The number of data points that must be breaching to trigger the alarm."
+  type        = number
+  default     = 5
+  
+}
