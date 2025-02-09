@@ -133,10 +133,12 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_all_alarms_sns_arns"></a> [all\_alarms\_sns\_arns](#input\_all\_alarms\_sns\_arns) | List of ARNs for the SNS topics | `list(string)` | `[]` | no |
+| <a name="input_datapoints_to_alarm"></a> [datapoints\_to\_alarm](#input\_datapoints\_to\_alarm) | The number of data points that must be breaching to trigger the alarm. | `number` | `5` | no |
 | <a name="input_db_instance_id"></a> [db\_instance\_id](#input\_db\_instance\_id) | The instance ID of the RDS database instance that you want to monitor. | `string` | n/a | yes |
 | <a name="input_disk_queue_depth_enabled"></a> [disk\_queue\_depth\_enabled](#input\_disk\_queue\_depth\_enabled) | Enable disk queue depth alarm | `bool` | `true` | no |
 | <a name="input_disk_queue_depth_sns_arns"></a> [disk\_queue\_depth\_sns\_arns](#input\_disk\_queue\_depth\_sns\_arns) | List of ARNs for the SNS topics | `list(string)` | `[]` | no |
 | <a name="input_disk_queue_depth_threshold"></a> [disk\_queue\_depth\_threshold](#input\_disk\_queue\_depth\_threshold) | The threshold for disk queue depth | `number` | `64` | no |
+| <a name="input_evaluation_periods"></a> [evaluation\_periods](#input\_evaluation\_periods) | The number of periods over which data is compared to the specified threshold. | `number` | `5` | no |
 | <a name="input_high_connections_enabled"></a> [high\_connections\_enabled](#input\_high\_connections\_enabled) | Enable high connections alarm | `bool` | `true` | no |
 | <a name="input_high_connections_max"></a> [high\_connections\_max](#input\_high\_connections\_max) | The maximum number of connections for the instance class | `number` | n/a | yes |
 | <a name="input_high_connections_sns_arns"></a> [high\_connections\_sns\_arns](#input\_high\_connections\_sns\_arns) | List of ARNs for the SNS topics | `list(string)` | `[]` | no |
